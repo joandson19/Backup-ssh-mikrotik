@@ -12,6 +12,9 @@ CHATID="CHAT_ID"
 # Defina o formato de compactação desejado: "zip" ou "tar"
 COMPAC="zip"
 
+# Não alterar mais nada abaixo
+# Exceto por sua conta e risco
+
 # Captura data do envio do backup
 DATA=$(date +%d/%m/%Y)
 
@@ -41,7 +44,7 @@ MK_BCKP_FILE="backup-$DEVICENAME-$(date +%Y%m%d).rsc"
 
 # Gera arquivo Mikrotik
 sshpass -p $MK_PASS ssh $MK_USER@$MK_IP "/export file=$MK_BCKP_FILE"
-# Exibe mensagem de envio do backup por email pelo Mikrotik
+
 sleep 10s
 # Faz o download do arquivo de dentro do Mikrotik
 #sshpass -p $MK_PASS scp $MK_USER@$MK_IP:/$MK_BCKP_FILE .
@@ -60,6 +63,11 @@ if [ ! -f /$BACKUP_DIR/$MK_BCKP_FILE ]; then
   echo "Erro: arquivo de backup não foi baixado"
   exit 1
 fi
+
+# Apaga o arquivo dentro do Mikrotik para não ocupar espaço.
+sshpass -p $MK_PASS ssh $MK_USER@$MK_IP "/file remove $MK_BCKP_FILE" 
+echo "Apagando arquivo não mais necessario no mikrotik"
+sleep 01
 
 # Exibe uma mensagem de que o arquivo de backup foi baixado com sucesso
 echo "Arquivo de backup baixado com sucesso!"
