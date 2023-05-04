@@ -12,9 +12,6 @@ CHATID="CHAT_ID"
 # Defina o formato de compactação desejado: "zip" ou "tar"
 COMPAC="zip"
 
-# Não alterar mais nada abaixo
-# Exceto por sua conta e risco
-
 # Captura data do envio do backup
 DATA=$(date +%d/%m/%Y)
 
