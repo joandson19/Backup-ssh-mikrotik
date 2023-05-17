@@ -17,3 +17,10 @@ No exemplo irei por para rodar o script todos os dias as 20:00 horas!
 
 00 20 * * *	/home/admin/Backup/mikrotik/mkbkp.sh "IP" "USUARIO" "SENHA" &>/dev/null
 
+# Atenção para o caso o mkbkp_multi.sh!
+
+ O mkbkp_multi.sh, ele faz backup de varios mikrotik ao mesmo tempo via loop de script e no caso dele você pode envia um ip ou varios ips e ele fará um loop no script para cada ip enviado no comando.
+ ex.
+ * ./mkbkp_multi.sh "ip1" "ip2" "ip3" "ip4" 
+
+Porém você precisa que todos os dispositivos tenham os mesmo usuario de senhas para que isso dê certo e esses parametros de usuario e senha precisar está definidos dentro do *mkbkp_multi.sh* !
